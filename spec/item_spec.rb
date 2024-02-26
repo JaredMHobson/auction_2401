@@ -104,10 +104,22 @@ RSpec.describe Item do
       expect(item1.bidding_open?).to be true
     end
 
-    it 'can no longer be open to bidding' do
+    it 'can close its bidding' do
       item1.close_bidding
 
       expect(item1.bidding_open?).to be false
+    end
+
+    it 'will return a string of how much the item was sold for when closed' do
+      item1.add_bid(attendee2, 20)
+
+      expect(item1.close_bidding).to eq('Sold for $20 dollars!')
+    end
+
+    it 'will return a specific string if there were no bids on the item when closed' do
+      expect(item1.bids).to be_empty
+
+      expect(item1.close_bidding).to eq('No sale! Come back next week for another chance.')
     end
   end
 end
