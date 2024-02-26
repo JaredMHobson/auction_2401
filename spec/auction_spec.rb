@@ -42,3 +42,21 @@ RSpec.describe Auction do
     end
   end
 end
+
+describe '5 items and 3 attendees' do 
+  let (:item1) { Item.new('Chalkware Piggy Bank') }
+  let (:item2) { Item.new('Bamboo Picture Frame') }
+  let (:item3) { Item.new('Homemade Chocolate Chip Cookies') }
+  let (:item4) { Item.new('2 Days Dogsitting') }
+  let (:item5) { Item.new('Forever Stamps') }
+  let (:attendee1) { Attendee.new({name: 'Megan', budget: '$50'}) }
+  let (:attendee2) { Attendee.new({name: 'Bob', budget: '$75'}) }
+  let (:attendee3) { Attendee.new({name: 'Mike', budget: '$100'}) }
+  let (:auction) { Auction.new }
+
+  describe '#initialize' do
+    it 'exists' do
+      expect(auction).to be_instance_of(Auction)
+    end
+  end
+end
