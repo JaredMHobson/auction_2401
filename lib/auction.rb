@@ -26,4 +26,10 @@ class Auction
       revenue += item.current_high_bid.to_i
     end
   end
+
+  def bidders
+    @items.flat_map do |item|
+      item.list_all_bidders
+    end.uniq
+  end
 end
