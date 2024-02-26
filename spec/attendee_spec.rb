@@ -19,5 +19,21 @@ RSpec.describe Attendee do
     it 'has a budget' do
       expect(attendee.budget).to eq(50)
     end
+
+    it 'has not bidded on any items by default' do
+      expect(attendee.items_bid_on).to eq([])
+    end
+  end
+
+  describe '#bid_on' do
+    it 'can bid on an item and store it in its items array' do
+      attendee.bid_on(item1)
+
+      expect(attendee.items_bid_on).to eq([item1])
+
+      attendee.bid_on(item2)
+
+      expect(attendee.items_bid_on).to eq([item1, item2])
+    end
   end
 end
