@@ -77,4 +77,30 @@ describe '5 items and 3 attendees' do
       expect(auction.unpopular_items).to eq([item2, item3, item5])
     end
   end
+
+  describe '#potential_revenue' do
+    it 'can return the total possible sale price of all items current highest bid' do
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+
+      item1.add_bid(attendee2, 20)
+
+      expect(auction.potential_revenue).to eq(20)
+
+      item1.add_bid(attendee1, 22)
+
+      expect(auction.potential_revenue).to eq(22)
+
+      item4.add_bid(attendee3, 50)
+
+      expect(auction.potential_revenue).to eq(72)
+
+      item3.add_bid(attendee2, 15)
+
+      expect(auction.potential_revenue).to eq(87)
+    end
+  end
 end
