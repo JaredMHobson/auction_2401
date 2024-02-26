@@ -54,4 +54,20 @@ RSpec.describe Item do
       expect(item1.current_high_bid).to eq(22)
     end
   end
+
+  describe '#list_all_bidders' do
+    it 'can list all of its bidders names' do
+      item1.add_bid(attendee3, 18)
+      
+      expect(item1.list_all_bidders).to eq(['Mike'])
+      
+      item1.add_bid(attendee1, 22)
+      
+      expect(item1.list_all_bidders).to eq(['Mike', 'Megan'])
+      
+      item1.add_bid(attendee2, 20)
+
+      expect(item1.list_all_bidders).to eq(['Mike', 'Megan', 'Bob'])
+    end
+  end
 end
