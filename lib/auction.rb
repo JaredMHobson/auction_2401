@@ -32,4 +32,17 @@ class Auction
       item.list_all_bidders
     end.uniq
   end
+
+  def bidder_names
+    bidders.map do |bidder|
+      bidder.name
+    end
+  end
+
+  def bidder_info
+    bidder_info = Hash.new { |hash, key| hash[key] = {} }
+    @items.each do |item|
+      # require 'pry'; binding.pry
+    end
+  end
 end
