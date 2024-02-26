@@ -36,4 +36,16 @@ RSpec.describe Attendee do
       expect(attendee.items_bid_on).to eq([item1, item2])
     end
   end
+
+  describe '#bidding_info' do
+    it 'can return a hash with its budget and items bid on' do
+      attendee.bid_on(item1)
+
+      expect(attendee.bidding_info).to eq({budget: 50, items: [item1]})
+
+      attendee.bid_on(item2)
+
+      expect(attendee.bidding_info).to eq({budget: 50, items: [item1, item2]})
+    end
+  end
 end
