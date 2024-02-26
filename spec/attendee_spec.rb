@@ -17,7 +17,7 @@ RSpec.describe Attendee do
     end
 
     it 'has a budget' do
-      expect(attendee.budget).to eq('$50')
+      expect(attendee.budget).to eq(50)
     end
   end
 end
