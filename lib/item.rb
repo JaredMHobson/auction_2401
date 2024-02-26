@@ -4,6 +4,7 @@ class Item
   def initialize(name)
     @name = name
     @bids = {}
+    @bidding_open = true
   end
 
   def add_bid(attendee, bid_amount)
@@ -23,5 +24,13 @@ class Item
     list_all_bidders.map do |bidder|
       bidder.name
     end
+  end
+
+  def bidding_open?
+    @bidding_open
+  end
+
+  def close_bidding
+    @bidding_open = false
   end
 end
