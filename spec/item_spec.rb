@@ -86,4 +86,16 @@ RSpec.describe Item do
       expect(item1.list_all_bidder_names).to eq(['Mike', 'Megan', 'Bob'])
     end
   end
+
+  describe '#bidding_open' do
+    it 'is open to bidding by default' do
+      expect(item1.bidding_open?).to be true
+    end
+
+    it 'can no longer be open to bidding' do
+      item1.close_bidding
+
+      expect(item1.bidding_open?).to be false
+    end
+  end
 end
