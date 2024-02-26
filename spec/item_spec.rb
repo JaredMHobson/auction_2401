@@ -56,18 +56,34 @@ RSpec.describe Item do
   end
 
   describe '#list_all_bidders' do
-    it 'can list all of its bidders names' do
+    it 'can list all of its bidders' do
       item1.add_bid(attendee3, 18)
       
-      expect(item1.list_all_bidders).to eq(['Mike'])
+      expect(item1.list_all_bidders).to eq([attendee3])
       
       item1.add_bid(attendee1, 22)
       
-      expect(item1.list_all_bidders).to eq(['Mike', 'Megan'])
+      expect(item1.list_all_bidders).to eq([attendee3, attendee1])
       
       item1.add_bid(attendee2, 20)
 
-      expect(item1.list_all_bidders).to eq(['Mike', 'Megan', 'Bob'])
+      expect(item1.list_all_bidders).to eq([attendee3, attendee1, attendee2])
+    end
+  end
+
+  describe '#list_all_bidder_names' do
+    it 'can list all of its bidders names' do
+      item1.add_bid(attendee3, 18)
+      
+      expect(item1.list_all_bidder_names).to eq(['Mike'])
+      
+      item1.add_bid(attendee1, 22)
+      
+      expect(item1.list_all_bidder_names).to eq(['Mike', 'Megan'])
+      
+      item1.add_bid(attendee2, 20)
+
+      expect(item1.list_all_bidder_names).to eq(['Mike', 'Megan', 'Bob'])
     end
   end
 end
