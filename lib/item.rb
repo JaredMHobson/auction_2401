@@ -8,8 +8,10 @@ class Item
   end
 
   def add_bid(attendee, bid_amount)
-    attendee.bid_on(self)
-    @bids[attendee] = bid_amount
+    if bidding_open?
+      attendee.bid_on(self)
+      @bids[attendee] = bid_amount
+    end
   end
 
   def current_high_bid

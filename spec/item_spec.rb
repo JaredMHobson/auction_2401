@@ -37,6 +37,18 @@ RSpec.describe Item do
 
       expect(item1.bids).to eq({attendee2 => 20, attendee1 => 22})
     end
+
+    it 'cannot add a bid if bidding is closed' do
+      item1.add_bid(attendee2, 20)
+
+      expect(item1.bids).to eq({attendee2 => 20})
+
+      item1.close_bidding
+
+      item1.add_bid(attendee1, 22)
+
+      expect(item1.bids).to eq({attendee2 => 20})
+    end
   end
 
   describe '#current_high_bid' do
