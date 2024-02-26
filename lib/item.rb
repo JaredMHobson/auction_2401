@@ -7,6 +7,7 @@ class Item
   end
 
   def add_bid(attendee, bid_amount)
+    attendee.bid_on(self)
     @bids[attendee] = bid_amount
   end
 
