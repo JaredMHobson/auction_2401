@@ -13,4 +13,10 @@ class Item
   def current_high_bid
     @bids.values.max
   end
+
+  def list_all_bidders
+    @bids.keys.reduce([]) do |names, bidder|
+      names << bidder.name
+    end
+  end
 end
