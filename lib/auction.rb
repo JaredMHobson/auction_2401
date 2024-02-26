@@ -40,9 +40,10 @@ class Auction
   end
 
   def bidder_info
-    bidder_info = Hash.new { |hash, key| hash[key] = {} }
-    @items.each do |item|
-      # require 'pry'; binding.pry
+    bidders_and_their_bidding_info = Hash.new { |hash, key| hash[key] = {} }
+    bidders.each do |attendee|
+      bidders_and_their_bidding_info[attendee] = attendee.bidding_info
     end
+    bidders_and_their_bidding_info
   end
 end
