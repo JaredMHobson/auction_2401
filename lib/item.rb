@@ -34,5 +34,10 @@ class Item
 
   def close_bidding
     @bidding_open = false
+    if @bids.empty?
+      'No sale! Come back next week for another chance.'
+    else
+      "Sold for $#{current_high_bid} dollars!"
+    end
   end
 end
