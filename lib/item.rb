@@ -16,8 +16,12 @@ class Item
   end
 
   def list_all_bidders
-    @bids.keys.reduce([]) do |names, bidder|
-      names << bidder.name
+    @bids.keys
+  end
+
+  def list_all_bidder_names
+    list_all_bidders.map do |bidder|
+      bidder.name
     end
   end
 end
