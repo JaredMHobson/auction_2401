@@ -129,4 +129,43 @@ describe '5 items and 3 attendees' do
       expect(auction.bidders).to eq(['Bob', 'Megan', 'Mike'])
     end
   end
+
+  describe '#bidder_info' do
+    it 'can return a hash of bidders with a subhash of their budget and items they have bid on' do
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+
+      item1.add_bid(attendee2, 20)
+
+      expect(auction.bidder_info).to eq({
+        attendee2 => {budget: 75, items: [item1]}
+      })
+
+      item1.add_bid(attendee1, 22)
+
+      expect(auction.bidder_info).to eq({
+        attendee2 => {budget: 75, items: [item1]},
+        attendee1 => {budget: 50, items: [item1]}
+      })
+
+      item4.add_bid(attendee3, 50)
+
+      expect(auction.bidder_info).to eq({
+        attendee2 => {budget: 75, items: [item1]},
+        attendee1 => {budget: 50, items: [item1]},
+        attendee3 => {budget: 100, items: [item4]}
+      })
+
+      item3.add_bid(attendee2, 15)
+
+      expect(auction.bidder_info).to eq({
+        attendee2 => {budget: 75, items: [item1, item3]},
+        attendee1 => {budget: 50, items: [item1]},
+        attendee3 => {budget: 100, items: [item4]}
+      })
+    end
+  end
 end
