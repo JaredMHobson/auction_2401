@@ -105,6 +105,32 @@ describe '5 items and 3 attendees' do
   end
 
   describe '#bidders' do
+    it 'can list all bidders' do
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+
+      item1.add_bid(attendee2, 20)
+
+      expect(auction.bidders).to eq([attendee2])
+
+      item1.add_bid(attendee1, 22)
+
+      expect(auction.bidders).to eq([attendee2, attendee1])
+
+      item4.add_bid(attendee3, 50)
+
+      expect(auction.bidders).to eq([attendee2, attendee1, attendee3])
+
+      item3.add_bid(attendee2, 15)
+
+      expect(auction.bidders).to eq([attendee2, attendee1, attendee3])
+    end
+  end
+
+  describe '#bidder_names' do
     it 'can list the names of all bidders' do
       auction.add_item(item1)
       auction.add_item(item2)
@@ -114,19 +140,19 @@ describe '5 items and 3 attendees' do
 
       item1.add_bid(attendee2, 20)
 
-      expect(auction.bidders).to eq(['Bob'])
+      expect(auction.bidder_names).to eq(['Bob'])
 
       item1.add_bid(attendee1, 22)
 
-      expect(auction.bidders).to eq(['Bob', 'Megan'])
+      expect(auction.bidder_names).to eq(['Bob', 'Megan'])
 
       item4.add_bid(attendee3, 50)
 
-      expect(auction.bidders).to eq(['Bob', 'Megan', 'Mike'])
+      expect(auction.bidder_names).to eq(['Bob', 'Megan', 'Mike'])
 
       item3.add_bid(attendee2, 15)
 
-      expect(auction.bidders).to eq(['Bob', 'Megan', 'Mike'])
+      expect(auction.bidder_names).to eq(['Bob', 'Megan', 'Mike'])
     end
   end
 
