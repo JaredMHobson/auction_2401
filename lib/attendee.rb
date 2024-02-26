@@ -10,4 +10,8 @@ class Attendee
   def bid_on(item)
     @items_bid_on << item
   end
+
+  def bidding_info
+    {budget: @budget, items: @items_bid_on}
+  end
 end
